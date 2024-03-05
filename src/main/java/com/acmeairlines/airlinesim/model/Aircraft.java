@@ -1,29 +1,46 @@
 package com.acmeairlines.airlinesim.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
+@Table(name = "aircraft")
 @Data
-@Table(name = "Aircraft")
 public class Aircraft {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer aircraftID;
+    private int aircraftId;
 
-    @ManyToOne
-    @JoinColumn(name = "AirlineID", referencedColumnName = "AirlineID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "airline_id")
     private Airline airline;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String model;
 
-    @Column(nullable = false)
-    private Integer totalSeats;
+    @Column(name = "total_seats", nullable = false)
+    private int totalSeats;
 
-    private Integer firstClassSeats;
-    private Integer businessClassSeats;
-    private Integer premiumEconomySeats;
-    private Integer economySeats;
+    @Column(name = "first_class_seats")
+    private Integer firstClassSeats; // Nullable, hence Integer
+
+    @Column(name = "business_class_seats")
+    private Integer businessClassSeats; // Nullable, hence Integer
+
+    @Column(name = "premium_economy_seats")
+    private Integer premiumEconomySeats; // Nullable, hence Integer
+
+    @Column(name = "economy_seats")
+    private Integer economySeats; // Nullable, hence Integer
+
+    // Constructors, getters, and setters are managed by Lombok's @Data
 }
-
