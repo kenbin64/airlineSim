@@ -15,11 +15,6 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int flightId;
 
-
-    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<StandbyPriorityList> standbyPriorityLists = new HashSet<>();
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "route_id", referencedColumnName = "routeId")
     private Route route;
