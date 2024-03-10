@@ -1,5 +1,5 @@
 -- Create the database and switch to it
-CREATE DATABASE IF NOT EXISTS AirlineSim;
+CREATE DATABASE IF NOT EXISTS airline_sim;
 USE AirlineSim;
 
 -- Drop existing tables if they exist to avoid conflicts during development
