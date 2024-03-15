@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AirlineService {
+    List<Airline> findAllAirline();
+    Optional<Airline> findAirlineById(Integer id);
     Airline saveAirline(Airline airline);
-    List<Airline> getAllAirlines();
-    Optional<Airline> getAirlineById(Integer id);
-    Airline updateAirline(Airline airline);
     void deleteAirline(Integer id);
+    // Additional methods as needed, for example, finding airlines by country, etc.
 }

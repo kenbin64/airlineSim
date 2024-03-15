@@ -1,34 +1,43 @@
 package com.acmeairlines.airlinesim.model;
 
-import jakarta.persistence.*;
 import lombok.Data;
-import java.util.Date;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
-@Entity
 @Data
-@Table(name = "Flight")
+@Entity
+@Table(name = "flight")
 public class Flight {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer flightID;
+    private Integer flightId;
 
     @ManyToOne
-    @JoinColumn(name = "RouteID", referencedColumnName = "RouteID")
+    @JoinColumn(name = "route_id", nullable = false)
     private Route route;
 
     @ManyToOne
-    @JoinColumn(name = "AircraftID", referencedColumnName = "AircraftID")
+    @JoinColumn(name = "aircraft_id", nullable = false)
     private Aircraft aircraft;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Date departureTime;
+    private LocalDateTime departureTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    private Date arrivalTime;
+    private LocalDateTime arrivalTime;
 
-    private String terminal;
-    private String gate;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private FlightStatus status;
+
+    private String delayReason;
+
+    @ManyToOne
+    @JoinColumn(name = "terminal_id")
+    private Terminal terminal;
+
+    @ManyToOne
+    @JoinColumn(name = "gate_id")
+    private Gate gate;
 }
-

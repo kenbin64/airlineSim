@@ -18,29 +18,23 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
     @Override
+    public List<Aircraft> findAllAircraft() {
+        return aircraftRepository.findAll();
+    }
+
+    @Override
+    public Optional<Aircraft> findAircraftById(Integer id) {
+        return aircraftRepository.findById(id.longValue());
+    }
+
+    @Override
     public Aircraft saveAircraft(Aircraft aircraft) {
         return aircraftRepository.save(aircraft);
     }
 
     @Override
-    public List<Aircraft> getAllAircrafts() {
-        return aircraftRepository.findAll();
-    }
-
-    @Override
-    public Optional<Aircraft> getAircraftById(Integer id) {
-        return aircraftRepository.findById(id);
-    }
-
-    @Override
-    public Aircraft updateAircraft(Aircraft aircraft) {
-
-        return aircraftRepository.save(aircraft);
-    }
-
-    @Override
     public void deleteAircraft(Integer id) {
-
-        aircraftRepository.deleteById(id);
+        aircraftRepository.deleteById(id.longValue());
     }
 }
+

@@ -18,28 +18,23 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
+    public List<Airport> findAllAirports() {
+        return airportRepository.findAll();
+    }
+
+    @Override
+    public Optional<Airport> findAirportById(Integer id) {
+        return airportRepository.findById(id.longValue());
+    }
+
+    @Override
     public Airport saveAirport(Airport airport) {
         return airportRepository.save(airport);
     }
 
     @Override
-    public List<Airport> getAllAirports() {
-        return airportRepository.findAll();
-    }
-
-    @Override
-    public Optional<Airport> getAirportById(Integer id) {
-        return airportRepository.findById(id);
-    }
-
-    @Override
-    public Airport updateAirport(Airport airport) {
-
-        return airportRepository.save(airport);
-    }
-
-    @Override
     public void deleteAirport(Integer id) {
-        airportRepository.deleteById(id);
+        airportRepository.deleteById(id.longValue());
     }
 }
+

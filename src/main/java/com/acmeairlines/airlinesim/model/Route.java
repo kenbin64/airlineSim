@@ -1,23 +1,35 @@
 package com.acmeairlines.airlinesim.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity
 @Data
-@Table(name = "Route")
+@Entity
+@Table(name = "route")
 public class Route {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer routeID;
+    @Column(name = "route_id")
+    private Integer routeId;
 
     @ManyToOne
-    @JoinColumn(name = "DepartureAirportID", referencedColumnName = "AirportID")
-    private Airport departureAirport;
+    @JoinColumn(name = "origin_airport_id", referencedColumnName = "airport_id")
+    private Airport originAirport;
 
     @ManyToOne
-    @JoinColumn(name = "ArrivalAirportID", referencedColumnName = "AirportID")
-    private Airport arrivalAirport;
+    @JoinColumn(name = "destination_airport_id", referencedColumnName = "airport_id")
+    private Airport destinationAirport;
 
-    private Integer distanceMiles;
+    // Constructors, getters, and setters
+    // Lombok @Data annotation generates these
 }
+
+

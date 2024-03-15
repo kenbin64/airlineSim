@@ -1,33 +1,26 @@
 package com.acmeairlines.airlinesim.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import jakarta.persistence.*;
 
-@Entity
 @Data
+@Entity
+@Table(name = "seat_assignment")
 public class SeatAssignment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer seatAssignmentID;
+    private Integer seatAssignmentId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "BookingID")
-    private Booking booking;
+    @ManyToOne
+    @JoinColumn(name = "flight_id", nullable = false)
+    private Flight flight;
 
-    @Enumerated(EnumType.STRING)
-    private SeatType seatType;
+    @ManyToOne
+    @JoinColumn(name = "seat_id", nullable = false)
+    private Seat seat;
 
-    public enum SeatType {
-        Aisle, Window, Middle, Exit_Row, Bulkhead
-    }
+    @ManyToOne
+    @JoinColumn(name = "passenger_id", nullable = false)
+    private Passenger passenger;
 }
 
