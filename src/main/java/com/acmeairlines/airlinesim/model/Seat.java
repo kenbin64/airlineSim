@@ -3,21 +3,18 @@ package com.acmeairlines.airlinesim.model;
 import lombok.Data;
 import jakarta.persistence.*;
 
-@Data
 @Entity
-@Table(name = "seat")
+@Data
+@Table(name="seat")
 public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer seatId;
+    private Integer seat_id;
 
-    @ManyToOne
-    @JoinColumn(name = "aircraft_id", nullable = false)
-    private Aircraft aircraft;
+    private Integer aircraft_id; // Consider changing to Aircraft type if you have an Aircraft entity
 
-    @Column(nullable = false)
-    private String seatNumber;
+    private String seat_number;
 
     @Enumerated(EnumType.STRING)
-    private SeatType seatType;
+    private SeatType seat_type; // Enum for SeatType
 }

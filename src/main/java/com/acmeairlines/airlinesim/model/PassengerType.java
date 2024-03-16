@@ -1,20 +1,23 @@
 package com.acmeairlines.airlinesim.model;
 
-public enum PassengerType {
-    NORMAL,
-    SENIOR,
-    UNACCOMPANIED_MINOR,
-    LAW_ENFORCEMENT,
-    PRISONER,
-    DEAD_HEAD_CREW,
-    AIR_MARSHAL,
-    GOVERNMENT,
-    MEDICAL_EVAC,
-    US_MARSHAL,
-    DIPLOMAT,
-    EMPLOYEE,
-    BUDDY_PASS,
-    ARMED,
-    AIRLINE_EXECUTIVE,
-    VIP
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Data
+@Table(name="passenger_type")
+public class PassengerType {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer passenger_type_id;
+
+    private String description;
+    private String code;
+
+    @ManyToMany(mappedBy = "passengerTypes")
+    private Set<Passenger> passengers = new HashSet<>();
 }
