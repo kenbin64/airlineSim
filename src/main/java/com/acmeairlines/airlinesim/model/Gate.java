@@ -1,20 +1,21 @@
 package com.acmeairlines.airlinesim.model;
 
-import lombok.Data;
 import jakarta.persistence.*;
+import lombok.Data;
 
-@Data
 @Entity
+@Data
 @Table(name = "gate")
 public class Gate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "gate_id")
     private Integer gateId;
 
-    @ManyToOne
-    @JoinColumn(name = "terminal_id", nullable = false)
-    private Terminal terminal;
+    @Column(name = "terminal_id", nullable = false)
+    private Integer terminalId;
 
-    @Column(nullable = false)
+    @Column(name = "number", nullable = false)
     private String number;
 }

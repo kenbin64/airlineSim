@@ -1,30 +1,21 @@
 package com.acmeairlines.airlinesim.model;
 
+import jakarta.persistence.*;
 import lombok.Data;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import java.util.List;
 
-@Data
 @Entity
+@Data
 @Table(name = "terminal")
 public class Terminal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "terminal_id")
     private Integer terminalId;
 
+    @Column(name = "airport_id")
     private Integer airportId;
+
+    @Column(name = "name")
     private String name;
-
-    @OneToMany(mappedBy = "terminal", fetch = FetchType.LAZY)
-    private List<Gate> gates;
-
-    // Constructors, getters, and setters are omitted for brevity
 }
-
